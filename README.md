@@ -1,0 +1,1 @@
+# Czujka progowa
