@@ -1,1 +1,2 @@
 # Czujka progowa
+coś nowego
