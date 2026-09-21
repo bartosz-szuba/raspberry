@@ -1,2 +1,2 @@
 # Czujka progowa
-coś nowego
+Jak uruchomić raspberry
