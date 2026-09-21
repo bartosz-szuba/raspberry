@@ -1,0 +1,1 @@
+# program główny, pętla i tryby
