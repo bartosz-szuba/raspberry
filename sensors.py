@@ -1,0 +1,1 @@
+# odczyt odległości i temperatury
