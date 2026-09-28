@@ -1,24 +1,29 @@
-# program główny: czujnik -> kolor -> dioda
-# KROK 5: TWOJE ZADANIE - zamień każde ___ na właściwy kod
+# Program główny: czujnik -> wygładzanie -> kolor -> dioda
 
 from time import sleep
 
-# "import" z NASZYCH plików - Python szuka pliku sensors.py / display.py w tym samym folderze.
-from sensors import odleglosc_cm                  # funkcja: zwraca odległość w cm
-from display import kolor_dla_odleglosci, dioda   # funkcja: cm -> kolor, oraz obiekt diody
+# nasze własne pliki z tego samego folderu
+from sensors import odleglosc_cm
+from display import kolor_dla_odleglosci, dioda
+
+# jaką część drogi do nowego odczytu robimy w każdym obrocie
+# 1 = bez wygładzania (drga), 0 = stoi w miejscu
+WYGLADZANIE = 0.33
+
+# wartość startowa - musi istnieć przed pętlą
+gladkie_cm = odleg  losc_cm()
 
 while True:
-    # 1) Odczytaj odległość z czujnika (wywołaj funkcję z sensors.py).
-    cm = ___
+    cm = odleglosc_cm()
 
-    # 2) Zamień odległość na kolor (wywołaj funkcję z display.py, daj jej cm).
-    kolor = ___
+    # przesuwamy gladkie_cm o kawałek w stronę nowego odczytu
+    gladkie_cm = gladkie_cm + WYGLADZANIE * (cm - gladkie_cm)
 
-    # 3) Ustaw ten kolor na diodzie.
-    ___
+    # kolor z wygładzonej odległości, żeby dioda nie drgała
+    kolor = kolor_dla_odleglosci(gladkie_cm)
+    dioda.color = kolor
 
-    # 4) Wypisz odległość i kolor, żeby widzieć, co się dzieje.
-    print(f"{cm:.1f} cm -> {kolor}")
+    print(f"surowa: {cm:5.1f} cm   gładka: {gladkie_cm:5.1f} cm")
 
-    # 5) Poczekaj chwilkę - 0.1 s, czyli 10 odczytów na sekundę.
-    sleep(0.1)
+    # 50 odczytów na sekundę
+    sleep(0.02)
