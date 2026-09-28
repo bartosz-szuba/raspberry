@@ -11,7 +11,7 @@ from display import kolor_dla_odleglosci, dioda
 WYGLADZANIE = 0.33
 
 # wartość startowa - musi istnieć przed pętlą
-gladkie_cm = odleg  losc_cm()
+gladkie_cm = odleglosc_cm()
 
 while True:
     cm = odleglosc_cm()
